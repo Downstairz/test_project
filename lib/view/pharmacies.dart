@@ -54,7 +54,7 @@ class _PharmaciesState extends State<Pharmacies> {
       color: Colors.white,
       child: Column(
         children: [
-          Expanded(child: PharmacyListView(_pharmacies, _orders, context)),
+          Expanded(child: PharmacyListView(_pharmacies, _orders)),
           TextButton(
             style: TextButton.styleFrom(textStyle: TextStyle(fontSize: 20.0)),
             onPressed: _orderMedication,
@@ -80,16 +80,15 @@ typedef showOrderInProgress = void Function(int index);
 class PharmacyListView extends StatelessWidget {
   final List<PharmacyTier>? pharmacies;
   final List<Order>? orders;
-  final BuildContext context;
 
-  PharmacyListView(this.pharmacies, this.orders, this.context);
+  PharmacyListView(this.pharmacies, this.orders,);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: pharmacies?.length ?? 0,
       itemBuilder: (_, int index) => GestureDetector(
-        onTap: () => _goToDetails(index),
+        onTap: () => _goToDetails(index, context),
         child: Container(
           color: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -116,7 +115,7 @@ class PharmacyListView extends StatelessWidget {
     return orders?.any((order) => order.pharmacyId == pharmacyId) ?? false;
   }
 
-  Future<void> _goToDetails(int index) async {
+  Future<void> _goToDetails(int index, context) async {
     final pharmacyId = pharmacies?[index].pharmacyId;
     Navigator.of(context).pushNamed(NameRoutes.pharmacyDetails,
         arguments: {'pharmacyId': pharmacyId, 'order': _getOrder(pharmacyId!)});

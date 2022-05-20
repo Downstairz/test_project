@@ -107,16 +107,15 @@ class _PharmacyDetailState extends State<PharmacyDetail> {
               _pharmacy?.value?.pharmacyHours?.replaceAll('\\n', '\n') ??
                   'Pharmacy Hours not available'),
           SizedBox(height: 20.0),
-          Expanded(child: MedicationListView(widget.order, context)),
+          Expanded(child: MedicationListView(widget.order)),
         ],
       );
 }
 
 class MedicationListView extends StatelessWidget {
   final Order? order;
-  final BuildContext context;
 
-  MedicationListView(this.order, this.context);
+  MedicationListView(this.order);
 
   @override
   Widget build(BuildContext context) {
