@@ -1,0 +1,19 @@
+{
+  "pharmacies": [
+    {
+      "name": "ReCept",
+      "pharmacyId": "NRxPh-HLRS"
+    },
+    {
+      "name": "My Community Pharmacy",
+      "pharmacyId": "NRxPh-BAC1"
+    },
+    {
+      "pharmacyId": "NRxPh-SJC1"
+    },
+    {
+      "name": "NY Pharmacy",
+      "pharmacyId": "NRxPh-ZEREiaYq"
+    }
+  ]
+}
