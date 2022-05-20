@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_project/constants.dart';
 import 'package:test_project/models/pharmacy_tier.dart';
 import '../data/pharmacy_repo.dart';
 import '../helper.dart';
@@ -14,7 +14,6 @@ class Coordinates {
 }
 
 class PharmacyCubit extends Cubit<PharmacyState> {
-  static const _tag = 'AccountCreateState';
   final PharmacyRepository repo;
   List<String>? _medications;
   PharmacyValue? _nearestPharmacy;
@@ -35,7 +34,7 @@ class PharmacyCubit extends Cubit<PharmacyState> {
     final pharmacyData = await repo.getPharmacy(pharmacyId: pharmacyId);
 
     if (pharmacyData == null) {
-      emit(PharmacyError('getting pharmacy failed'));
+      emit(PharmacyError(Constants.gettingPharmacyFailed));
       return;
     }
 
@@ -46,7 +45,7 @@ class PharmacyCubit extends Cubit<PharmacyState> {
     final pharmacies = await repo.getPharmacies();
 
     if (pharmacies == null) {
-      emit(PharmacyError('reading pharmacy file failed'));
+      emit(PharmacyError(Constants.readingPharmacyFileFailed));
       return;
     }
 
@@ -58,7 +57,7 @@ class PharmacyCubit extends Cubit<PharmacyState> {
     final medicationData = await repo.getMedications();
 
     if (medicationData == null) {
-      emit(PharmacyError('getting medication list failed'));
+      emit(PharmacyError(Constants.getMedicationListFailed));
       return;
     }
 

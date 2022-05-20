@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:test_project/models/pharmacies.dart';
-import '../models/pharmacy.dart';
-import '../models/pharmacy_tier.dart';
 import 'package:path_provider/path_provider.dart';
 
 class PharmacyService {
@@ -35,17 +33,6 @@ class PharmacyService {
     final String response =
         await rootBundle.loadString('assets/pharmacies.json');
     final data = await json.decode(response);
-    // List<PharmacyTier>? pharmacies = [];
-
-    // if (data != null && data is List) {
-    //   data.forEach((i) {
-    //     final pharmacyTier = PharmacyTier.fromJson(i);
-    //     pharmacies.add(pharmacyTier);
-    //   });
-    //
-    //   return pharmacies;
-    // }
-
     final pharmacies = Pharmacies.fromJson(data);
     return pharmacies;
   }
